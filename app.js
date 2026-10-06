@@ -186,6 +186,7 @@ function validate(form) {
     const tu = +form.elements.luong_tu.value, den = +form.elements.luong_den.value;
     if (tu && den && den < tu) { form.elements.luong_den.classList.add('is-invalid'); errors.push('Thu nhập “đến” phải lớn hơn hoặc bằng “từ”.'); }
     if (!$$('[name="co_cau"]:checked', form).length) { $('[data-group="co_cau"]', form).classList.add('is-invalid'); errors.push('missing'); }
+    if (!(imageStore.get(form) || []).length) { $('.upload__box', form).classList.add('is-invalid'); errors.push('Vui lòng tải lên ít nhất 1 ảnh nơi làm việc.'); }
     const url = form.elements.link_xac_minh;
     if (url.value && !/^https?:\/\//i.test(url.value.trim())) { url.classList.add('is-invalid'); errors.push('Link fanpage/Google Maps cần bắt đầu bằng https://'); }
   }
@@ -217,11 +218,11 @@ function talentPost(d, code) {
   return [
     `${STATUS_ICON[d.trang_thai] || '🟢'} BEAUTY TALENT ${code} – ${prof}`,
     '',
-    `📍 ${d.khu_vuc}, ${d.tinh}`,
+    `📍 ${d.khu_vuc ? d.khu_vuc + ', ' : ''}${d.tinh}`,
     `⏳ Kinh nghiệm: ${d.kinh_nghiem}`,
     `✂️ Mạnh: ${d.ky_nang.split(",").map(s => s.trim()).filter(Boolean).join(' · ')}`,
     `💰 Mong muốn: ${d.thu_nhap} triệu/tháng`,
-    `📅 Có thể nhận việc: ${formatDate(d.ngay_nhan_viec)}`,
+    d.ngay_nhan_viec ? `📅 Có thể nhận việc: ${formatDate(d.ngay_nhan_viec)}` : null,
     `📌 Trạng thái: ${d.trang_thai}`,
     d.link_tay_nghe ? `🎬 Tay nghề: ${d.link_tay_nghe}` : null,
     '',
