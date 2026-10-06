@@ -5,7 +5,7 @@
 const CONFIG = {
   // URL Web App của Google Apps Script (điền sau khi triển khai backend).
   // Để trống = chế độ DEMO: không gửi dữ liệu, chỉ hiện bản xem trước bài đăng.
-  SCRIPT_URL: '',
+  SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzh1WST3aAjbug_oVpbibWIe0TnVBfmiubZ-JSwq4ntPbxMtJKlC9HhAEoYnNFAyY8A9Q/exec',
   GROUP_URL: 'https://www.facebook.com/groups/30shinevieclam',
   ZALO_URL: '#',
   MAX_IMAGES: 3,
